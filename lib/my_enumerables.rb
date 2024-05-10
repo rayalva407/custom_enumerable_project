@@ -1,5 +1,13 @@
 module Enumerable
-  # Your code goes here
+  def my_each_with_index
+    if block_given?
+      (0...self.length).each { |i|
+        yield(self[i], i)
+      }
+    end
+
+    self
+  end
 end
 
 # You will first have to define my_each
@@ -9,9 +17,9 @@ end
 class Array
   def my_each
     if block_given?
-      (0...self.length).each { |i|
-        yield(self[i])
-      }
+      self.each do |element|
+        yield(element)
+      end
     end
 
     self
