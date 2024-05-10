@@ -8,6 +8,18 @@ module Enumerable
 
     self
   end
+
+  def my_select
+    result = []
+
+    if block_given?
+      self.my_each do |element|
+        result << element if yield(element)
+      end
+    end
+
+    result
+  end
 end
 
 # You will first have to define my_each
