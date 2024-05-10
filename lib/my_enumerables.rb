@@ -64,6 +64,32 @@ module Enumerable
 
     count
   end
+
+  def my_map
+    result = []
+
+    if block_given?
+      self.my_each do |element|
+        result << yield(element)
+      end
+    end
+
+    result
+  end
+
+  def my_inject(initial = nil)
+    if initial.nil?
+      initial = self.first
+    end
+
+    accumulator = initial
+
+    self.my_each do |element|
+      accumulator = yield(accumulator, element)
+    end
+
+    accumulator
+  end
 end
 
 # You will first have to define my_each
